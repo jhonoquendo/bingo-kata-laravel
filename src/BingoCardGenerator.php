@@ -1,6 +1,7 @@
 <?php 
 
-class BingoCaller{
+
+class BingoCardGenerator{
 
     private $numbers = [];
 
