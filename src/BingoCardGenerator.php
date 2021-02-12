@@ -1,21 +1,18 @@
-<?php 
+<?php
 
+use Models\Card;
 
 class BingoCardGenerator{
 
-    private $numbers = [];
+    private $card = [
+        'B' => [],
+        'I' => [],
+        'N' => [],
+        'G' => [],
+        'O' => [],
+    ];
 
-    public function __construct(){
-    }
-
-    public function callNumber(){
-
-        do{
-            $number = rand(1,75);
-        }while(in_array($number,$this->numbers));
-
-        $this->numbers[] = $number;
-
-        return $number;
+    public function generate():Card{
+        return new Card($this->card);
     }
 }

@@ -4,9 +4,10 @@ use PHPUnit\Framework\TestCase;
 
 class BingoCardGeneratorTest extends TestCase{
 
-    public function testWhenCallsNumberItsInTheValidRange(){
+    public function testCardContainsNumersAccordingToColumn(){
 
-        $caller = new BingoCardGenerator();
-        $this->assertTrue(true);
+        $generator = new BingoCardGenerator();
+        $card = $generator->generate();
+        $this->assertTrue($card->isValid());
     }
 }
