@@ -2,7 +2,7 @@
 
 class Card{
 
-    private $grid;
+    public $grid;
 
     public function __construct($grid)
     {
@@ -10,6 +10,13 @@ class Card{
     }
 
     public function isValid():bool{
+
+        echo "\nHas Valid size => ";
+        print_r($this->hasValidSize());
+
+        echo "\nHas Valid respectBoundaries => ";
+        print_r($this->respectBoundaries());
+
         return $this->hasValidSize() && $this->respectBoundaries();
     }
 
@@ -32,10 +39,13 @@ class Card{
 
     public function columnHasElementsBetween($column,$min,$max,$allowNull=false):bool{
         foreach($column as $number){
-            if($allowNull && is_null($number))
+            if($allowNull && is_null($number)){
                 continue;
+            }
 
             if($number < $min || $number > $max){
+                echo "\n\n Esta condicion es verdadero pero devuelve falso";
+                echo "$number < $min || $number > $max";
                 return false;
             }
         }
@@ -44,5 +54,15 @@ class Card{
 
     public function hasFreeSpaceInTheMiddle(){
         return is_null($this->grid['N'][2]);
+    }
+
+    public function getNumbersInCard(){
+        return array_merge(
+            $this->grid['B'],
+            $this->grid['I'],
+            $this->grid['N'],
+            $this->grid['G'],
+            $this->grid['O']
+        );
     }
 }
